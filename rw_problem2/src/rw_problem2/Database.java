@@ -1,18 +1,18 @@
 package rw_problem2;
 
 public class Database {
-	private int readers; // number of active readers
+	private int writers; // number of active writers
 	public Database(){ // initialize database
-		this.readers = 0;
+		this.writers = 0;
     }
     /**
 	   	Read from this database.
-	 	@param number Number of the reader
+	 	@param number Number of the writer
     */
-	public void read(int number){
+	public void write(int number){
 	  	synchronized(this){
-	  		this.readers++;
-    		System.out.println("Reader " + number + " starts reading.");
+	  		this.writers++;
+    		System.out.println("Writer " + number + " starts writing.");
     	}
 	 
     	final int DELAY = 5000;
@@ -22,9 +22,9 @@ public class Database {
     	catch (InterruptedException e) {}
 	 
     	synchronized(this){
-    		System.out.println("Reader " + number + " stops reading.");
-    		this.readers--;
-    		if (this.readers == 0){
+    		System.out.println("Writer " + number + " stops writing.");
+    		this.writers--;
+    		if (this.writers == 0){
 	   			this.notifyAll();
 	   		}
 	   	}
@@ -32,16 +32,16 @@ public class Database {
 	 
 	/**
 	 	Writes to this database
-	   	@param number Number of the writer
+	   	@param number Number of the reader
     */
-	public synchronized void write(int number){
-	   	while (this.readers != 0){
+	public synchronized void read(int number){
+	   	while (this.writers != 0){
     		try{
     			this.wait();
     		}
     		catch (InterruptedException e) {}
     	}
-    	System.out.println("Writer " + number + " starts writing.");
+    	System.out.println("Reader " + number + " starts reading.");
 	 
     	final int DELAY = 5000;
     	try{
@@ -49,7 +49,7 @@ public class Database {
     	}
     	catch (InterruptedException e) {}
 	 
-    	System.out.println("Writer " + number + " stops writing.");
+    	System.out.println("Reader " + number + " stops reading.");
     	this.notifyAll();
     }
 }
