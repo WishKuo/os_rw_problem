@@ -1,4 +1,4 @@
-package rw_problem;
+package rw_problem2;
 
 public class Writer extends Thread{
 	private static int writers = 0; // number of writers

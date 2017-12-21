@@ -1,4 +1,4 @@
-package rw_problem;
+package rw_problem2;
 
 public class Simulator{
 	/**

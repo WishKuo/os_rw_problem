@@ -1,4 +1,4 @@
-package rw_problem;
+package rw_problem2;
 
 public class Reader extends Thread{
 	private static int readers = 0; // number of readers
