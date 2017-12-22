@@ -1,10 +1,23 @@
 package rw_problem;
+import java.util.Random;
 
 public class Database {
 	private int readers; // number of active readers
 	public Database(){ // initialize database
 		this.readers = 0;
     }
+	/* get poisson distribution random variable*/
+	private static int getPoissonRandom(double mean) { 
+	    Random r = new Random();
+	    double L = Math.exp(-mean);
+	    int k = 0;
+	    double p = 1.0;
+	    do {
+	        p = p * r.nextDouble();
+	        k++;
+	    } while (p > L);
+	    return k - 1;
+	}
     /**
 	   	Read from this database.
 	 	@param number Number of the reader
@@ -17,7 +30,7 @@ public class Database {
 	 
     	final int DELAY = 5000;
     	try{
-    		Thread.sleep((int) (Math.random() * DELAY));
+    		Thread.sleep( getPoissonRandom(Math.random()) * DELAY );
     	}
     	catch (InterruptedException e) {}
 	 
@@ -45,7 +58,7 @@ public class Database {
 	 
     	final int DELAY = 5000;
     	try{
-    		Thread.sleep((int) (Math.random() * DELAY));
+    		Thread.sleep( getPoissonRandom(Math.random()) * DELAY);
     	}
     	catch (InterruptedException e) {}
 	 

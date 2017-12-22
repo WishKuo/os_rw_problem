@@ -10,10 +10,13 @@ public class Database {
 	 	@param number Number of the writer
     */
 	public void write(int number){
-	  	synchronized(this){
-	  		this.writers++;
-    		System.out.println("Writer " + number + " starts writing.");
+		while (this.writers != 0){
+    		try{
+    			this.wait();
+    		}
+    		catch (InterruptedException e) {}
     	}
+    	System.out.println("Writer " + number + " starts writing.");
 	 
     	final int DELAY = 5000;
     	try{
@@ -21,35 +24,30 @@ public class Database {
     	}
     	catch (InterruptedException e) {}
 	 
-    	synchronized(this){
-    		System.out.println("Writer " + number + " stops writing.");
-    		this.writers--;
-    		if (this.writers == 0){
-	   			this.notifyAll();
-	   		}
-	   	}
-	}
+    	System.out.println("Writer " + number + " stops writing.");
+    	this.notifyAll();
+    }
 	 
 	/**
 	 	Writes to this database
 	   	@param number Number of the reader
     */
 	public synchronized void read(int number){
-	   	while (this.writers != 0){
+		while (this.writers != 0){
     		try{
     			this.wait();
     		}
     		catch (InterruptedException e) {}
     	}
-    	System.out.println("Reader " + number + " starts reading.");
-	 
+		System.out.println("Reader " + number + " starts reading.");
+		 
     	final int DELAY = 5000;
     	try{
     		Thread.sleep((int) (Math.random() * DELAY));
     	}
     	catch (InterruptedException e) {}
 	 
-    	System.out.println("Reader " + number + " stops reading.");
+    	System.out.println("Reader " + number + " stops readcing.");
     	this.notifyAll();
     }
 }
