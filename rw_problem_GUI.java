@@ -3,15 +3,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
-import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.util.concurrent.TimeUnit;
 
 public class rw_problem_GUI {
 
 	private JFrame frame;
-	private JTextField txtCenter;
-	private JTextField txtLeftside;
-	private JTextField txtRightside;
-	private JTextField txtBottom;
 
 	/**
 	 * Launch the application.
@@ -43,29 +42,29 @@ public class rw_problem_GUI {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		JLabel lblTop = new JLabel("Top");
-		frame.getContentPane().add(lblTop, BorderLayout.NORTH);
-		
-		txtCenter = new JTextField();
-		txtCenter.setText("Center");
-		frame.getContentPane().add(txtCenter, BorderLayout.CENTER);
-		txtCenter.setColumns(10);
-		
-		txtLeftside = new JTextField();
-		txtLeftside.setText("LeftSide");
-		frame.getContentPane().add(txtLeftside, BorderLayout.WEST);
-		txtLeftside.setColumns(10);
-		
-		txtRightside = new JTextField();
-		txtRightside.setText("RightSide");
-		frame.getContentPane().add(txtRightside, BorderLayout.EAST);
-		txtRightside.setColumns(10);
-		
-		txtBottom = new JTextField();
-		txtBottom.setText("Bottom");
-		frame.getContentPane().add(txtBottom, BorderLayout.SOUTH);
-		txtBottom.setColumns(10);
-	}
 
+		JLabel lblPressStartButton = new JLabel("Press START button to start.");
+		lblPressStartButton.setBounds(136, 256, 183, 16);
+		frame.getContentPane().add(lblPressStartButton);
+			
+		JLabel readerNum = new JLabel("");
+		readerNum.setBounds(111, 48, 318, 16);
+		frame.getContentPane().add(readerNum);
+		
+		JLabel writerNum = new JLabel("");
+		writerNum.setBounds(90, 166, 256, 23);
+		frame.getContentPane().add(writerNum);
+		
+		JButton btnSTART = new JButton("START");
+		btnSTART.setBounds(170, 221, 117, 29);
+		btnSTART.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				readerNum.setText("There are"+" of us still reading now!"); //the number of readers who are reading now must be added 
+				
+				writerNum.setText("Okay, then I'll wait.");
+			}
+		});
+		frame.getContentPane().setLayout(null);
+		frame.getContentPane().add(btnSTART);
+	}
 }
