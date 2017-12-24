@@ -1,3 +1,6 @@
+/* RW Problem(b):
+ * reader preference
+ * */
 package rw_problem;
 import java.util.Random;
 
