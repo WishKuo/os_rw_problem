@@ -2,7 +2,6 @@ import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import java.awt.*;
 //import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
@@ -56,29 +55,7 @@ public class rw_problem_GUI {
 		JLabel writerNum = new JLabel("");
 		writerNum.setBounds(90, 155, 256, 23);
 		frame.getContentPane().add(writerNum);
-		
 	
-		
-		JButton btnSTART = new JButton("START");
-		btnSTART.setBounds(170, 221, 117, 29);
-		btnSTART.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int readerNumber=2;
-				if(readerNumber==0){
-					readerNum.setText("Now, it's writer's turn!"); 
-					writerNum.setText("Oh yeah~ It's time for me to write.");
-				}
-				else{
-				readerNum.setText("There are "+readerNumber+" of us still reading now!"); 
-				//readerNumber = the number of readers who are reading now must be added 
-				writerNum.setText("Okay, then I'll wait.");
-				}
-			}
-		});
-		frame.getContentPane().setLayout(null);
-		frame.getContentPane().add(btnSTART);
-		
-		
 		ImageIcon png2 = new ImageIcon("DialogSpace.png");
 		JLabel lblDialogspace = new JLabel(png2);//The space for words
 		lblDialogspace.setBounds(125, 6, 319, 94);
@@ -98,7 +75,25 @@ public class rw_problem_GUI {
 		JLabel lblPen = new JLabel(png3);
 		lblPen.setBounds(299, 106, 145, 166);
 		frame.getContentPane().add(lblPen);
-		
+
+		JButton btnSTART = new JButton("START");
+		btnSTART.setBounds(170, 221, 117, 29);
+		btnSTART.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int readerNumber=2;
+				if(readerNumber==0){
+					readerNum.setText("Now, it's writer's turn!"); 
+					writerNum.setText("Oh yeah~ It's time for me to write.");
+				}
+				else{
+				readerNum.setText("There are "+readerNumber+" of us still reading now!"); 
+				//readerNumber = the number of readers who are reading now must be added 
+				writerNum.setText("Okay, then I'll wait.");
+				}
+			}
+		});
+		frame.getContentPane().setLayout(null);
+		frame.getContentPane().add(btnSTART);
 
 	}
 }
