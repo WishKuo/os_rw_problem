@@ -80,16 +80,16 @@ public class rw_problem_GUI {
 		btnSTART.setBounds(170, 221, 117, 29);
 		btnSTART.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int readerNumber=2;
-				if(readerNumber==0){
-					readerNum.setText("Now, it's writer's turn!"); 
-					writerNum.setText("Oh yeah~ It's time for me to write.");
+				int readerNumber=5;
+				while(readerNumber!=0){
+				//int readerNumber=0;
+					readerNum.setText("There are "+readerNumber+" of us still reading now!"); 
+					//readerNumber = the number of readers who are reading now must be added 
+					writerNum.setText("Okay, then I'll wait.");
+					readerNumber-=1;
 				}
-				else{
-				readerNum.setText("There are "+readerNumber+" of us still reading now!"); 
-				//readerNumber = the number of readers who are reading now must be added 
-				writerNum.setText("Okay, then I'll wait.");
-				}
+				readerNum.setText("Now, it's writer's turn!"); 
+				writerNum.setText("Oh yeah~ It's time for me to write.");
 			}
 		});
 		frame.getContentPane().setLayout(null);
