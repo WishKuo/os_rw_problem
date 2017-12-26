@@ -1,3 +1,5 @@
+package rw_problem;
+
 import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,6 +35,7 @@ public class rw_problem_GUI {
 	public rw_problem_GUI() {
 		initialize();
 	}
+	
 
 	/**
 	 * Initialize the contents of the frame.
