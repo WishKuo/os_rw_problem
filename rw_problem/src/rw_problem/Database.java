@@ -2,15 +2,26 @@
  * reader preference
  * */
 package rw_problem;
-import java.util.Random;
+//import java.util.Random;
+import org.apache.commons.math3.distribution.ExponentialDistribution;
 
 public class Database {
 	private int readers; // number of active readers
 	public Database(){ // initialize database
 		this.readers = 0;
     }
+	
+	ExponentialDistribution ed = new ExponentialDistribution(8); // mean = 8
+	int getGapTime() {
+		int waitingTime = 0;
+		// Let waitingTime in the range 3 <= time <= 5
+		while(waitingTime < 3 || waitingTime > 5) {
+			waitingTime = (int) ed.sample();
+		}
+		return waitingTime * 1000 ;
+	}
 	/* get poisson distribution random variable*/
-	private static int getPoissonRandom(double mean) { 
+	/*private static int getPoissonRandom(double mean) { 
 	    Random r = new Random();
 	    double L = Math.exp(-mean);
 	    int k = 0;
@@ -21,11 +32,13 @@ public class Database {
 	    } while (p > L);
 	    return k - 1;
 	}
+	 */
     /**
 	   	Read from this database.
 	 	@param number Number of the reader
     */
 	public void read(int number){
+		int waitingTime = getGapTime();
 	  	synchronized(this){
 	  		this.readers++;
     		System.out.println("Reader " + number + " starts reading.");
@@ -33,7 +46,7 @@ public class Database {
 	 
     	final int DELAY = 5000;
     	try{
-    		Thread.sleep( getPoissonRandom(Math.random()) * DELAY );
+    		Thread.sleep( waitingTime );
     	}
     	catch (InterruptedException e) {}
 	 
@@ -51,6 +64,7 @@ public class Database {
 	   	@param number Number of the writer
     */
 	public synchronized void write(int number){
+		int waitingTime = getGapTime();
 	   	while (this.readers != 0){
     		try{
     			this.wait();
@@ -61,7 +75,7 @@ public class Database {
 	 
     	final int DELAY = 5000;
     	try{
-    		Thread.sleep( getPoissonRandom(Math.random()) * DELAY);
+    		Thread.sleep( waitingTime );
     	}
     	catch (InterruptedException e) {}
 	 
