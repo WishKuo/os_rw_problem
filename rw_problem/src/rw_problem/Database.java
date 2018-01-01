@@ -2,8 +2,21 @@
  * reader preference
  * */
 package rw_problem;
-//import java.util.Random;
 import org.apache.commons.math3.distribution.ExponentialDistribution;
+import javafx.scene.image.*;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
+import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.scene.control.Button;
+
 
 public class Database {
 	private int readers; // number of active readers
@@ -12,37 +25,27 @@ public class Database {
     }
 	
 	ExponentialDistribution ed = new ExponentialDistribution(8); // mean = 8
+	final int GUI_TRANSITION_TIME = 2000; // 2 sec
 	int getGapTime() {
 		int waitingTime = 0;
 		// Let waitingTime in the range 3 <= time <= 5
 		while(waitingTime < 3 || waitingTime > 5) {
 			waitingTime = (int) ed.sample();
 		}
-		return waitingTime * 1000 ;
+		return waitingTime * 1000 + GUI_TRANSITION_TIME ;
 	}
-	/* get poisson distribution random variable*/
-	/*private static int getPoissonRandom(double mean) { 
-	    Random r = new Random();
-	    double L = Math.exp(-mean);
-	    int k = 0;
-	    double p = 1.0;
-	    do {
-	        p = p * r.nextDouble();
-	        k++;
-	    } while (p > L);
-	    return k - 1;
-	}
-	 */
+
     /**
 	   	Read from this database.
 	 	@param number Number of the reader
     */
 	public void read(int number){
 		int waitingTime = getGapTime();
+
 	  	synchronized(this){
 	  		this.readers++;
-    		System.out.println("Reader " + number + " starts reading.");
-    	}
+	  		System.out.println("Reader " + number + " starts reading.");
+	  	}
 	 
     	final int DELAY = 5000;
     	try{

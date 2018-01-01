@@ -1,5 +1,20 @@
 package rw_problem;
 
+import javafx.scene.image.*;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
+import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.scene.control.Button;
+
+
 public class Reader extends Thread{
 	private static int readers = 0; // number of readers
 	 
