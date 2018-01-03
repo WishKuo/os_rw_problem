@@ -48,7 +48,7 @@ public class MainController {
 		
 		int readerNum=10;
 		
-		while(readerNum!=0){
+		if(readerNum!=0){
 			
 				Timeline timeline = new Timeline();
 				timeline.setDelay(Duration.seconds(1));
