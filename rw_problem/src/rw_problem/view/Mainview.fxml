@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <StackPane layoutX="89.0" layoutY="89.0" prefHeight="236.0" prefWidth="315.0">
+         <children>
+            <ImageView fitHeight="196.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../bin/image/BookWorm.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <StackPane layoutX="826.0" layoutY="250.0" prefHeight="318.0" prefWidth="444.0">
+         <children>
+            <ImageView fitHeight="251.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../bin/image/pen.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <AnchorPane layoutX="148.0" layoutY="13.0" prefHeight="104.0" prefWidth="273.0">
+         <children>
+            <Text layoutX="38.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reader" wrappingWidth="187.2078628540039">
+               <font>
+                  <Font size="45.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="928.0" layoutY="535.0" prefHeight="97.0" prefWidth="257.0">
+         <children>
+            <Text layoutX="45.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Writer" wrappingWidth="144.3918228149414">
+               <font>
+                  <Font size="45.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
