@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rw_problem.Database">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d9e9fc" height="79.0" layoutY="328.0" stroke="#6ab2ff" strokeType="INSIDE" width="600.0" />
+      <Label fx:id="ShowNumber" layoutX="323.0" layoutY="34.0" prefHeight="39.0" prefWidth="36.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="readerDia1" layoutX="225.0" layoutY="43.0" prefHeight="20.0" prefWidth="98.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="readerDia2" layoutX="357.0" layoutY="43.0" prefHeight="20.0" prefWidth="212.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="179.0" layoutY="18.0" prefHeight="80.0" prefWidth="433.0">
+         <graphic>
+            <ImageView fitHeight="80.0" fitWidth="407.0">
+               <image>
+                  <Image url="@../../../bin/image/DialogSpace.png" />
+               </image>
+            </ImageView>
+         </graphic></Label>
+      <Label fx:id="readerImg" layoutX="47.0" layoutY="98.0" prefHeight="110.0" prefWidth="86.0">
+         <graphic>
+            <ImageView fitHeight="133.0" fitWidth="143.0">
+               <image>
+                  <Image url="@../../../bin/image/BookWorm.png" />
+               </image>
+            </ImageView>
+         </graphic></Label>
+      <Label fx:id="writerImg" layoutX="502.0" layoutY="226.0">
+         <graphic>
+            <ImageView>
+               <image>
+                  <Image url="@../../../bin/image/pen.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
+      <Label fx:id="writerDia" layoutX="81.0" layoutY="250.0" prefHeight="49.0" prefWidth="352.0">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <ImageView fitHeight="79.0" fitWidth="369.0" layoutX="75.0" layoutY="237.0">
+         <image>
+            <Image url="@../../../bin/image/DialogSpace2.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

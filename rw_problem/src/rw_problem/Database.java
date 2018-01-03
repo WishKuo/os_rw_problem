@@ -3,19 +3,25 @@
  * */
 package rw_problem;
 import org.apache.commons.math3.distribution.ExponentialDistribution;
-import javafx.scene.image.*;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
-import javafx.util.Duration;
-import javafx.animation.TranslateTransition;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
+import javafx.animation.Transition;
 import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.scene.control.Button;
+import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
+import javafx.util.Duration;
 
 
 public class Database {
@@ -23,8 +29,21 @@ public class Database {
 	public Database(){ // initialize database
 		this.readers = 0;
     }
-	
 	ExponentialDistribution ed = new ExponentialDistribution(8); // mean = 8
+	
+	@FXML
+	private Label ShowNumber;
+	@FXML
+	private Label readerDia1;
+	@FXML
+	private Label readerDia2;
+	@FXML
+	private Label writerDia;
+	@FXML
+	private Label readerImg;
+	@FXML
+	private Label writerImg;
+	
 	final int GUI_TRANSITION_TIME = 2000; // 2 sec
 	int getGapTime() {
 		int waitingTime = 0;
@@ -45,6 +64,7 @@ public class Database {
 	  	synchronized(this){
 	  		this.readers++;
 	  		System.out.println("Reader " + number + " starts reading.");
+	  		move(this.readers);
 	  	}
 	 
     	final int DELAY = 5000;
@@ -55,6 +75,7 @@ public class Database {
 	 
     	synchronized(this){
     		System.out.println("Reader " + number + " stops reading.");
+    		move(this.readers);
     		this.readers--;
     		if (this.readers == 0){
 	   			this.notifyAll();
@@ -75,6 +96,7 @@ public class Database {
     		catch (InterruptedException e) {}
     	}
     	System.out.println("Writer " + number + " starts writing.");
+    	move(this.readers);
 	 
     	final int DELAY = 5000;
     	try{
@@ -83,6 +105,53 @@ public class Database {
     	catch (InterruptedException e) {}
 	 
     	System.out.println("Writer " + number + " stops writing.");
+    	move(this.readers);
     	this.notifyAll();
     }
+	
+	public void move(int reader) {
+		int readerNum=reader;
+		
+		if(readerNum!=0){
+			
+				Timeline timeline = new Timeline();
+				timeline.setDelay(Duration.seconds(1));
+				timeline.play();
+
+				Path path = new Path();
+				path.getElements().add(new MoveTo(-120.0f, -120.0f));
+				path.getElements().add(new LineTo(630.0f, 150.0f));
+			
+				PathTransition transition = new PathTransition();
+				transition.setNode(readerImg);
+				transition.setDuration(Duration.seconds(3));
+				transition.setPath(path);
+				transition.setCycleCount(10);
+				transition.play();
+			
+				readerDia1.setText("There are ");
+				ShowNumber.setText(Integer.toString(readerNum));
+				readerDia2.setText("of us are still reading now!");
+				writerDia.setText("Ok, I'll wait.");
+				//System.out.println(readerNum);
+				
+		}
+		else{
+			readerDia1.setText("There are ");
+			ShowNumber.setText(Integer.toString(readerNum));
+			readerDia2.setText("of us are still reading now!");
+			ShowNumber.setText(Integer.toString(readerNum));
+			writerDia.setText("Oh yeah~ Now it's my turn!");
+
+			
+			Circle circlePath = new Circle(10);
+			PathTransition transition2 = new PathTransition();
+			transition2.setNode(writerImg);
+			transition2.setDuration(Duration.seconds(3));
+			transition2.setPath(circlePath);
+			transition2.setCycleCount(2);
+			transition2.play();
+		}
+	
+	}
 }
